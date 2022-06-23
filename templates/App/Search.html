@@ -1,0 +1,85 @@
+{% extends 'App/index.html' %}
+
+
+
+
+{% block titleheading %}
+<div class="d-flex justify-content-between mb-3" style="margin-top: -37px;">
+  <div>
+    <h5>Top Questions</h5>
+  </div>
+  <div><a href="{% url 'BugApp:askQuestion' %}"><button class="btn btn-success">Ask Question</button></a></div>
+  </div>
+{% endblock %}
+
+
+
+{% block content %}
+{% if questions|length > 0 %}
+
+{% for question in questions %}
+<div >
+  
+<div class="card mb-3  ">
+<div class="d-flex ">
+          <div class="ml-4 mt-4" style="display: grid;align-items:center">
+            <span class="text-info"> <b> {{countVotes|countVotes:question.id}} Votes </b></span>
+              <span class="text-info border p-1 align-self-center"> <b>  {{counts|count_answers:question.id}}</b> Answer</span>
+              <span class="text-info"> <b>  {{viewss|countViews:question.id}} views</b></span>
+          </div>
+
+
+          
+         
+            <div class="card-body w-auto" >
+              <h5 class="card-title"><a href="{% url 'BugApp:single_question' id=question.id %}">{{question.title  | safe}}</a></h5>
+            
+              <p class="card-text"><small class="text-muted">Asked on {{question.publish}}</small></p>
+              <div class="d-flex justify-content-between">
+              <div>
+                {% with  tags=tags|get_item:question.title %}
+                {% for tag in tags %}
+                <button type="button" class="btn btn-primary"><span class="badge ">{{tag}}</span></button>
+                {% endfor %}
+              {% endwith %}
+              </div>
+              <div class = 'd-flex justify-content-between'>
+                <div class="p-2">
+                  <a href="">
+                    <span class="text-info"><b> {{question.author}}</b></span>
+                  </a>
+                </div>
+                <div class="p-2">
+               
+                  <span class="text-info"> <b>  
+                    {% with check=check|checkAnswer:question.id %}
+    
+                    </b> 
+                    {% if  check %} 
+                        Answered
+                    {% else %} 
+                        Asked
+                    {% endif  %} 
+                    {% endwith %}
+                      3 Secs Ago</span>
+                  
+                </div>
+              </div>
+            </div>
+    
+            </div>
+          
+          </div>
+</div>
+</div>
+
+{% endfor %}
+
+{% else  %}
+<h5 class="d-flex mt-5 justify-content-center align-center ">No Result found  .....😿</h5>
+
+{% endif %}
+{% endblock %}
+
+
+

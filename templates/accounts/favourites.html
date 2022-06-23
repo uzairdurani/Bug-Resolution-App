@@ -1,0 +1,55 @@
+{% extends "../base/index.html" %}
+{% block title %}<title>Favourites</title>{% endblock %}
+{% block header %}
+{% include "../base/navbar.html" %}
+{% endblock %}
+{% block cdn %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <section class="jumbotron text-center bg-white">
+        <div class="container">
+            <h1>User saved Favourites posts</h1>
+            <p class="lead text-muted"> here you can remove or view the favourites post you have added</p>
+        </div>
+    </section>
+    <div class="row">
+        <!-- Post preview-->
+        {% for post in new %}
+  
+        <div class="col-md-4">
+          <a
+            class="text-dark"
+            href="{{post.get_absolute_url}}"
+            alt="{{post.title}}"
+          >
+            <div class="card mb-4 box-shadow">
+              <img
+                class="card-img-top"
+                src="{{post.image.url}}"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <h2 style="font-size: 18px; font-weight: bold">
+                  {{post.title|truncatechars:50}}
+                </h2>
+                <p class="card-text">{{post.excerpt|truncatechars:50}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">9 mins</small>
+                    <div id="favourites-section">
+                      <a href="{% url 'accounts:favourite_add'  post.id %}" class="btn btn-outline-primary">Remove</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+        <!-- Pager-->
+   
+    </div>
+</div>
+
+{% endblock %}

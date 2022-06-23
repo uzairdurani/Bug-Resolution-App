@@ -1,0 +1,25 @@
+{% extends "../base/index.html" %}
+{% block title %}<title>Profile</title>{% endblock %}
+{% block header %}
+{% include "../base/navbar.html" %}
+{% endblock %}
+{% block cdn %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <section class="jumbotron text-center bg-white">
+        <div class="container">
+            <h1>User Dashboard</h1>
+            <p class="lead text-muted">Something short and leading about the collection below—its contents, the
+                creator,
+                etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <p>
+                <a href="{% url 'logout' %}" class="btn btn-primary my-2">Logout</a>
+            </p>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

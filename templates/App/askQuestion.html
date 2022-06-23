@@ -1,0 +1,84 @@
+{% extends 'App/index.html' %}
+
+{% block cdn %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<div class="container-fluid " style="margin-top: -40px;">
+    <div class="row no-gutter">
+        <div class="col-md-10 col-12 bg-light">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-12 mx-auto">
+                            {% if type == 'edit' %}
+                          
+                        
+                            <form class="account-form p-4 rounded col-lg-10 mx-auto" action="{% url 'BugApp:editQuestion' id=question  %}" method="post">
+                            {% else %}
+                           
+                            <form class="account-form p-4 rounded col-lg-10 mx-auto" action="{% url 'BugApp:askQuestion'  %}" method="post">
+                            {% endif %}
+                                {% csrf_token %}
+                                <p class="h4 mb-2 font-weight-bold">Ask a public question</p>
+                             
+
+                               
+
+                                <label class=" font-weight-bold">{{ form.title.label }}<span class="text-muted">
+                                        (Required)</span>
+                                    </label>
+                                       <br>
+                                    <span for="">Be specific and imagine you’re asking a question to another person
+                                            
+                                    </span>
+                                    <br>
+
+                                  
+                                
+                                {% if form.title.errors %}
+                                     {{form.title.errors}}
+                                {% endif %}        
+                                {{ form.title }}
+                                <br>
+                                <label class="small font-weight-bold">{{ form.body.label}}<span class="text-muted">
+                                        (Required)</span></label><br>
+                                        <span>Include all the information someone would need to answer your question</span>
+                                        <br>
+                                {% if form.body.errors %}
+                                error
+                                    {{form.body.errors}}
+                                {% endif %}
+                                {{ form.body }}
+                                <label class="small font-weight-bold">{{ form.tags.label}}<span class="text-muted">
+                                        (Required)</span></label><br>
+                                        <span>Add up to 5 tags to describe what your question is about</span>
+                                        <br>
+                                {% if form.tags.errors %}
+                                {{form.tags.errors}}
+                                {% endif %}
+                                {{ form.tags }}
+                               
+                                
+
+                               
+
+                                <button class="btn btn-dark btn-block py-2 mb-4 mt-5 font-weight-bold"
+                                    type="submit">Review Your Question</button>
+
+                                <hr class="mb-3">
+                                
+                            </form>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+    </div>
+</div>
+
+{% endblock %}

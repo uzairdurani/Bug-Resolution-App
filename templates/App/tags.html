@@ -1,0 +1,45 @@
+{% extends 'App/index.html' %}
+
+
+
+
+{% block titleheading %}
+<div class="d-flex justify-content-between mb-3" style="margin-top: -37px;">
+  <div>
+    <h5>Tags</h5>
+  </div>
+  
+  </div>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="card-columns ">
+
+
+    {% for tag in tags %}
+
+    <div class="card " >
+      <div class="card-body">
+        <h5 class="card-title">{{tag}}</h5>
+        <span class="card-text">{{tag}} relate question <br>  Total Question :  {{counter|get_item:tag }} </span><br>
+        <a href="{% url 'BugApp:tagssearch' search=tag %}" class="btn btn-primary">See More</a>
+      </div>
+      
+  </div>
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
