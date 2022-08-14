@@ -1,5 +1,5 @@
 from hashlib import new
-from tkinter.messagebox import QUESTION
+
 from django.template.defaultfilters import slugify
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import Http404, HttpResponse
