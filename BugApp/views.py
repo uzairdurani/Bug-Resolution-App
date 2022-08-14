@@ -78,7 +78,7 @@ def taggedSearch(request, search):
 
 def single_question(request, id):
     if not request.user.is_authenticated and request.method == 'POST':
-        return redirect('http://127.0.0.1:8000/account/login/')
+        return redirect('https://bugresolution.herokuapp.com/account/login/')
 
     if request.method == 'POST':
         newQuestionForm = Questionanswer(request.POST or None)
@@ -90,7 +90,7 @@ def single_question(request, id):
             user.thumbsdown = 0
 
             user.save()
-            return redirect(to='http://127.0.0.1:8000/question/'+str(id))
+            return redirect(to='https://bugresolution.herokuapp.com/question/'+str(id))
 
     else:
         try:
@@ -159,7 +159,7 @@ def askQuestion(request):
                 value = Questions.objects.filter(
                     Q(title=request.POST['title']) & Q(author__id=request.user.id)).first()
 
-                return redirect(to='http://127.0.0.1:8000/question/'+str(value.id))
+                return redirect(to='https://bugresolution.herokuapp.com/question/'+str(value.id))
 
         else:
             errors = newQuestionForm.errors
@@ -182,7 +182,7 @@ def editQuestion(request, id):
             for i in array:
                 instance.tags.add(i)
             form.save()
-            return redirect(to='http://127.0.0.1:8000/question/'+str(instance.id))
+            return redirect(to='https://bugresolution.herokuapp.com/question/'+str(instance.id))
         else:
             return render(request, 'App/askQuestion.html', {'form': form, })
 
@@ -253,7 +253,7 @@ def commentDelete(request, id, pk):
     except Comment.DoesNotExist:
         raise Http404()
     instance.delete()
-    return redirect(to='http://127.0.0.1:8000/question/'+str(pk))
+    return redirect(to='https://bugresolution.herokuapp.com/question/'+str(pk))
 
 
 @login_required
@@ -264,7 +264,7 @@ def answercommentDelete(request, id, pk):
     except Comment.DoesNotExist:
         raise Http404()
     instance.delete()
-    return redirect(to='http://127.0.0.1:8000/question/'+str(pk))
+    return redirect(to='https://bugresolution.herokuapp.com/question/'+str(pk))
 
 
 @login_required
