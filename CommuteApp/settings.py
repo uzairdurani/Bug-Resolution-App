@@ -137,7 +137,7 @@ USE_TZ = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/'
+LOGIN_REDIRECT_URL = 'https://bugresolution.herokuapp.com/'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
